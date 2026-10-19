@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Created by 11Hopem -->
+<!-- Copyright (c) 2026 11Hopem. All rights reserved. -->
+<!-- Licensed under 11Hopem Proprietary License. -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11AICreate — Next-Gen AI Cinema & Visual Studio (Web, iOS, Android)</title>
+  
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="Generate mind-bending AI cinema videos, ultra photorealistic photos, and multi-agent chat prompts. Cross-platform studio on Web, iOS SwiftUI, and Android Jetpack Compose." />
+  <meta name="keywords" content="11aicreate, ai video generator, text to video, sora ai, luma dream machine, flux photo, ai cinema, 11hopem" />
+  <meta name="author" content="11Hopem <umutocgdr@gmail.com>" />
+  <link rel="canonical" href="https://11aicreate.vercel.app" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://11aicreate.vercel.app" />
+  <meta property="og:title" content="11AICreate — Next-Gen AI Cinema & Visual Studio" />
+  <meta property="og:description" content="Generate mind-bending AI cinema videos and 8K photos. Powered by 11Hopem Unified Cloud." />
+  <meta property="og:image" content="https://11aicreate.vercel.app/logo.svg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="11AICreate — Next-Gen AI Cinema & Visual Studio" />
+  <meta name="twitter:description" content="Mind-bending AI cinema videos, photorealistic renders, and cross-platform native engines." />
+  <meta name="twitter:image" content="https://11aicreate.vercel.app/logo.svg" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "11AICreate",
+    "operatingSystem": "Web, iOS 17+, Android 14+",
+    "applicationCategory": "MultimediaApplication",
+    "description": "Next-Gen AI Cinema Video, Photo, and Creative Copilot Studio by 11Hopem.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "1 Free Generation Trial included"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "11Hopem",
+      "url": "https://11hopem.com"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Ambient Cyber Lighting -->
+  <div class="cyber-grid"></div>
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="ambient-orb orb-3"></div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <a href="/" class="brand-link">
+      <img src="/logo.svg" alt="11AICreate Logo" class="brand-logo-img" />
+      <span class="brand-name">11AICreate</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#studio" class="nav-link">Studio</a>
+      <a href="#showcase" class="nav-link">Viral Showcase</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#platforms" class="nav-link">iOS & Android</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div id="creditPill" class="credit-pill">✨ 1 Free Trial Active</div>
+      <div id="userProfilePill" style="display:none; align-items:center; gap:8px;"></div>
+      <button id="btnOpenAuth" class="btn-secondary">Sign In</button>
+      <a href="#studio" class="btn-primary">Create Now</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero">
+      <div class="hero-pill">
+        <span>⚡ 11Hopem Neural Vision Engine v2.4</span>
+      </div>
+      <h1 class="hero-title">
+        Turn Imagination Into <span>Cinematic Video</span> & 8K Photos
+      </h1>
+      <p class="hero-subtitle">
+        The unified generative AI studio. Craft jaw-dropping viral videos, photorealistic imagery, and direct prompts with AI Copilot. Cross-platform on Web, iOS (SwiftUI), and Android (Jetpack Compose).
+      </p>
+
+      <div style="display:flex; gap:16px; margin-bottom: 24px;">
+        <a href="#studio" class="btn-primary" style="padding: 14px 32px; font-size:16px;">Launch Studio (1 Free Trial)</a>
+        <a href="#pricing" class="btn-secondary" style="padding: 14px 28px; font-size:16px;">View Plans & Pricing</a>
+      </div>
+    </section>
+
+    <!-- Endless Looping Video Showcase Strip -->
+    <section id="showcase" style="position:relative; z-index:10;">
+      <div style="text-align:center; margin-bottom: 12px;">
+        <span style="font-size:12px; font-weight:800; color:var(--accent-cyan); text-transform:uppercase; letter-spacing:1px;">Trending Worldwide</span>
+        <h2 style="font-size:28px; font-weight:800;">Popular AI Visual Showcase</h2>
+      </div>
+      <div class="video-marquee-container">
+        <div id="marqueeTrack" class="video-marquee-track">
+          <!-- Marquee populated dynamically by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive AI Studio -->
+    <section id="studio" class="studio-section">
+      <div class="studio-card">
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="video">
+            <span>🎬</span> AI Video Generator
+          </button>
+          <button class="mode-tab" data-mode="photo">
+            <span>📸</span> AI Photo Studio
+          </button>
+          <button class="mode-tab" data-mode="chat">
+            <span>💬</span> AI Director Copilot
+          </button>
+        </div>
+
+        <textarea 
+          id="promptInput" 
+          class="prompt-box" 
+          placeholder="Describe your AI video: e.g. An astronaut exploring glowing purple caves on Europa, cinematic 35mm, slow dolly in..."
+        ></textarea>
+
+        <div class="studio-controls">
+          <div class="control-selectors">
+            <select id="modelSelect" class="custom-select">
+              <option value="11Cinema-Ultra-v2">Model: 11Cinema Ultra v2 (Sora / Luma)</option>
+              <option value="11FLUX-Master-1.1">Model: 11FLUX Master (8K Photo)</option>
+              <option value="11Kling-Motion-Studio">Model: Kling Motion Cinema</option>
+            </select>
+
+            <select id="ratioSelect" class="custom-select">
+              <option value="16:9">Aspect: 16:9 (Cinema)</option>
+              <option value="9:16">Aspect: 9:16 (TikTok / Reels)</option>
+              <option value="1:1">Aspect: 1:1 (Square)</option>
+              <option value="21:9">Aspect: 21:9 (Ultrawide)</option>
+            </select>
+          </div>
+
+          <button id="btnGenerate" class="btn-generate">
+            <span>Generate (1 Free Trial Left)</span>
+          </button>
+        </div>
+
+        <!-- Rendered Result Container -->
+        <div id="resultArea" class="result-area">
+          <div id="resultContent"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-Platform Ecosystem Overview -->
+    <section id="platforms" style="max-width:1100px; margin:0 auto 80px auto; padding:0 20px; text-align:center; position:relative; z-index:10;">
+      <span style="font-size:12px; font-weight:800; color:var(--accent-purple); text-transform:uppercase; letter-spacing:1px;">Unified Architecture</span>
+      <h2 style="font-size:32px; font-weight:800; margin-bottom:12px;">One Powerful Backend, Three Native Experiences</h2>
+      <p style="color:var(--text-muted); max-width:650px; margin:0 auto 40px auto; font-size:15px;">
+        All platforms share the same high-performance Supabase PostgreSQL database, synchronized credit wallets, and realtime generation queue.
+      </p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; text-align:left;">
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:28px;">
+          <div style="font-size:32px; margin-bottom:12px;">🌐</div>
+          <h3 style="font-size:18px; font-weight:700; margin-bottom:6px;">Web Studio</h3>
+          <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">Next.js 15 App Router with high-performance video streaming, responsive cinema canvas, and instant download.</p>
+          <span style="color:var(--accent-cyan); font-size:13px; font-weight:600;">Status: ● Live in Production</span>
+        </div>
+
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:28px;">
+          <div style="font-size:32px; margin-bottom:12px;">🍎</div>
+          <h3 style="font-size:18px; font-weight:700; margin-bottom:6px;">iOS Native (SwiftUI)</h3>
+          <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">Pure Swift 6 & SwiftUI architecture with AVPlayer haptics, StoreKit paywall bindings, and offline caching.</p>
+          <span style="color:var(--accent-purple); font-size:13px; font-weight:600;">Status: ● Native Xcode Ready</span>
+        </div>
+
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:28px;">
+          <div style="font-size:32px; margin-bottom:12px;">🤖</div>
+          <h3 style="font-size:18px; font-weight:700; margin-bottom:6px;">Android Native (Compose)</h3>
+          <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">Modern Kotlin & Jetpack Compose 1.7 UI, ExoPlayer video stream cards, Material3 dynamic theme, and Coroutines.</p>
+          <span style="color:var(--accent-pink); font-size:13px; font-weight:600;">Status: ● Jetpack Compose Ready</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing & Paywall Plans -->
+    <section id="pricing" class="pricing-section">
+      <span style="font-size:12px; font-weight:800; color:var(--accent-cyan); text-transform:uppercase; letter-spacing:1px;">Transparent Pricing</span>
+      <h2 class="pricing-title">Scale Your Creative Vision</h2>
+      <p class="pricing-subtitle">Start with 1 Free Trial. Upgrade anytime for dedicated GPU queue priority and 8K cinema exports.</p>
+
+      <div class="pricing-grid">
+        <!-- Plan 1 -->
+        <div class="pricing-card">
+          <div>
+            <div class="plan-name">Creator Starter</div>
+            <div class="plan-price">$19 <span>/ month</span></div>
+            <ul class="plan-features">
+              <li>120 AI Cinema Video Credits</li>
+              <li>500 Ultra HD Photo Renders</li>
+              <li>Access to Luma & Sora Models</li>
+              <li>Full Commercial Usage Rights</li>
+              <li>1080p Full HD Exports</li>
+            </ul>
+          </div>
+          <button class="btn-secondary btn-subscribe" data-plan="plan_starter" style="width:100%; padding:12px;">Choose Starter</button>
+        </div>
+
+        <!-- Plan 2 (Featured) -->
+        <div class="pricing-card featured">
+          <div class="badge-popular">Most Popular</div>
+          <div>
+            <div class="plan-name">Pro Studio</div>
+            <div class="plan-price">$49 <span>/ month</span></div>
+            <ul class="plan-features">
+              <li>450 Ultra Video Generations</li>
+              <li>Unlimited AI Photos</li>
+              <li>Multi-Agent Director Chat Copilot</li>
+              <li>Director Mode & Custom Camera Controls</li>
+              <li>Priority Dedicated Cloud GPU (No Queue)</li>
+              <li>4K & 8K Cinema Upscaling</li>
+            </ul>
+          </div>
+          <button class="btn-primary btn-subscribe" data-plan="plan_pro" style="width:100%; padding:12px;">Upgrade to Pro Studio</button>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="pricing-card">
+          <div>
+            <div class="plan-name">Agency Enterprise</div>
+            <div class="plan-price">$149 <span>/ month</span></div>
+            <ul class="plan-features">
+              <li>1,800 Cinema Video Generations</li>
+              <li>Custom LoRA Model Training</li>
+              <li>Team Shared Workspaces</li>
+              <li>Full REST & GraphQL API Access</li>
+              <li>24/7 Dedicated Concierge Support</li>
+            </ul>
+          </div>
+          <button class="btn-secondary btn-subscribe" data-plan="plan_enterprise" style="width:100%; padding:12px;">Contact Agency</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Paywall Modal (Triggered after 1 free trial) -->
+  <div id="paywallModal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="closePaywall" class="modal-close">&times;</button>
+      <div style="font-size:42px; margin-bottom:12px;">🔒</div>
+      <h3 style="font-size:24px; font-weight:800; margin-bottom:8px;">You've Used Your 1 Free Generation</h3>
+      <p style="color:var(--text-muted); font-size:14px; margin-bottom:24px;">
+        Unlock unlimited AI Cinema Video, 8K Photo creation, and Director Copilot with an 11AICreate Pro subscription.
+      </p>
+
+      <div style="background:rgba(0,240,255,0.05); border:1px solid rgba(0,240,255,0.3); border-radius:14px; padding:16px; margin-bottom:20px; text-align:left;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <strong style="color:#fff; font-size:16px;">Pro Studio (Best Value)</strong>
+            <div style="font-size:12px; color:var(--text-muted);">450 Generations / Month • Priority GPU</div>
+          </div>
+          <span style="font-size:22px; font-weight:800; color:var(--accent-cyan);">$49/mo</span>
+        </div>
+      </div>
+
+      <button class="btn-primary btn-subscribe" data-plan="plan_pro" style="width:100%; padding:14px; font-size:16px; margin-bottom:12px;">
+        Subscribe & Continue Creating
+      </button>
+      <div style="font-size:12px; color:var(--text-muted);">Instant access • Cancel anytime • 256-bit Encrypted Checkout</div>
+    </div>
+  </div>
+
+  <!-- User Auth Modal (Supabase Auth) -->
+  <div id="authModal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="closeAuth" class="modal-close">&times;</button>
+      <img src="/logo.svg" alt="11AICreate" style="width:54px; height:54px; margin-bottom:16px;" />
+      <h3 style="font-size:22px; font-weight:800; margin-bottom:6px;">Sign In to 11AICreate</h3>
+      <p style="color:var(--text-muted); font-size:13px; margin-bottom:20px;">
+        Synchronize your prompts and video gallery across Web, iOS, and Android.
+      </p>
+
+      <form id="authForm">
+        <input type="email" id="authEmail" class="input-field" placeholder="Enter your email address" required />
+        <button type="submit" class="btn-primary" style="width:100%; padding:12px; font-size:15px;">
+          Continue with Email / Magic Link
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer (Rule 9: Created by 11Hopem & https://11hopem.com) -->
+  <footer>
+    <div style="margin-bottom:12px;">
+      <a href="https://11hopem.com" target="_blank" rel="noopener noreferrer">Created by 11Hopem</a>
+    </div>
+    <div>
+      Copyright &copy; 2026 <a href="https://11hopem.com" target="_blank" rel="noopener noreferrer">11Hopem</a>. All rights reserved. Licensed under 11Hopem Proprietary License.
+    </div>
+  </footer>
+
+  <!-- App Script -->
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "11aicreate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "11AICreate — Cross-Platform AI Cinema & Visual Generation Studio (Web, iOS, Android) by 11Hopem",
+  "author": "11Hopem <umutocgdr@gmail.com>",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "dev": "npx -y serve -l 3000 public",
+    "start": "npx -y serve -l 3000 public",
+    "backup": "node scripts/backupService.js",
+    "prebuild": "node scripts/backupService.js",
+    "pretest": "node scripts/backupService.js",
+    "build": "node scripts/buildWeb.js",
+    "test": "node --test tests/*.test.js",
+    "lint": "node scripts/lintCheck.js"
+  },
+  "keywords": [
+    "ai",
+    "video-generation",
+    "photo-generation",
+    "ai-chat",
+    "supabase",
+    "swiftui",
+    "jetpack-compose",
+    "11hopem",
+    "11aicreate"
+  ]
+}

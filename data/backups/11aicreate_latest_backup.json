@@ -1,0 +1,33 @@
+{
+  "app": "11aicreate",
+  "version": "1.0.0",
+  "timestamp": "2026-10-19T18:04:06.780Z",
+  "creator": "11Hopem",
+  "platforms": [
+    "web",
+    "ios",
+    "android"
+  ],
+  "pricingTiers": [
+    {
+      "id": "plan_starter",
+      "price": 19,
+      "credits": 120
+    },
+    {
+      "id": "plan_pro",
+      "price": 49,
+      "credits": 450
+    },
+    {
+      "id": "plan_enterprise",
+      "price": 149,
+      "credits": 1800
+    }
+  ],
+  "rules": {
+    "freeTrialLimit": 1,
+    "paywallEnforced": true,
+    "backend": "Supabase PostgreSQL RLS"
+  }
+}

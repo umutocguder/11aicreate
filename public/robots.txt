@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://11aicreate.vercel.app/sitemap.xml
