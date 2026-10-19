@@ -92,7 +92,26 @@ export async function generateContent({ prompt, type = 'video', model = '11Cinem
     throw new Error('Prompt cannot be empty');
   }
 
-  // 1. Verify Credit / Free Trial allowance
+  // 1. AI Director Copilot provides free creative consultation & prompt engineering
+  if (type === 'chat') {
+    const copilotAdvice = promptCopilotChat(prompt);
+    const record = studioStore.recordGeneration({
+      prompt,
+      type: 'chat',
+      model: model || '11Director-Copilot-v2',
+      aspectRatio: 'N/A',
+      outputUrl: copilotAdvice,
+      thumbnail: '',
+      status: 'completed'
+    });
+    return {
+      success: true,
+      data: record,
+      remainingWallet: studioStore.wallet
+    };
+  }
+
+  // 2. Verify Credit / Free Trial allowance for Video & Photo Generative synthesis
   const permission = studioStore.canGenerate();
   if (!permission.allowed) {
     return {
@@ -103,7 +122,7 @@ export async function generateContent({ prompt, type = 'video', model = '11Cinem
     };
   }
 
-  // 2. Consume generation credit (free trial or paid)
+  // 3. Consume generation credit (free trial or paid)
   studioStore.consumeGenerationCredit();
 
   // 3. Synthesize result

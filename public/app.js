@@ -60,20 +60,33 @@ function initShowcaseMarquee() {
 // 2. Mode Tabs
 function initModeTabs() {
   const tabs = document.querySelectorAll('.mode-tab');
+  const promptBox = document.getElementById('promptInput');
+  const controlSelectors = document.querySelector('.control-selectors');
+  const modelSelect = document.getElementById('modelSelect');
+  const ratioSelect = document.getElementById('ratioSelect');
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       currentMode = tab.dataset.mode;
       
-      const promptBox = document.getElementById('promptInput');
       if (currentMode === 'video') {
         promptBox.placeholder = 'Describe your AI video: e.g. An astronaut exploring glowing purple caves on Europa, cinematic 35mm, slow dolly in...';
+        if (controlSelectors) controlSelectors.style.display = 'flex';
+        if (modelSelect) modelSelect.value = '11Cinema-Ultra-v2';
+        if (ratioSelect) ratioSelect.value = '16:9';
       } else if (currentMode === 'photo') {
         promptBox.placeholder = 'Describe your AI photo: e.g. Cyberpunk samurai portrait, intricate gold leaf katana, neon reflections, 8K Hasselblad...';
+        if (controlSelectors) controlSelectors.style.display = 'flex';
+        if (modelSelect) modelSelect.value = '11FLUX-Master-1.1';
+        if (ratioSelect) ratioSelect.value = '1:1';
       } else {
         promptBox.placeholder = 'Ask your AI Director Copilot: e.g. How do I prompt camera moves in Sora? Enhance my cyberpunk scene prompt...';
+        if (controlSelectors) controlSelectors.style.display = 'none';
       }
+
+      updateCreditDisplay();
     });
   });
 }
@@ -95,16 +108,24 @@ function initStudioActions() {
       return;
     }
 
-    // Check paywall
-    const check = studioStore.canGenerate();
-    if (!check.allowed) {
-      logTelemetry('paywall_triggered_generation_attempt', { prompt: prompt.substring(0, 50) });
-      openPaywallModal();
-      return;
+    // Check paywall (only for generative video & photo, chat copilot is free)
+    if (currentMode !== 'chat') {
+      const check = studioStore.canGenerate();
+      if (!check.allowed) {
+        logTelemetry('paywall_triggered_generation_attempt', { prompt: prompt.substring(0, 50), mode: currentMode });
+        openPaywallModal();
+        return;
+      }
     }
 
     btn.disabled = true;
-    btn.innerHTML = '<span>⚡ Synthesizing Cinema...</span>';
+    if (currentMode === 'video') {
+      btn.innerHTML = '<span>🎬 Synthesizing AI Cinema...</span>';
+    } else if (currentMode === 'photo') {
+      btn.innerHTML = '<span>📸 Rendering 8K Masterpiece...</span>';
+    } else {
+      btn.innerHTML = '<span>🤖 Analyzing Directorial Concept...</span>';
+    }
 
     try {
       const res = await generateContent({
@@ -165,13 +186,20 @@ function updateCreditDisplay() {
   const pill = document.getElementById('creditPill');
   const btn = document.getElementById('btnGenerate');
 
+  if (currentMode === 'chat') {
+    if (btn) btn.innerHTML = '<span>💬 Ask Director Copilot (Free)</span>';
+    return;
+  }
+
+  const modeName = currentMode === 'photo' ? 'Photo' : 'Video';
+
   if (check.allowed) {
     if (check.reason === 'free_trial') {
       if (pill) pill.textContent = '✨ 1 Free Trial Active';
-      if (btn) btn.innerHTML = '<span>Generate (1 Free Trial Left)</span>';
+      if (btn) btn.innerHTML = `<span>Generate ${modeName} (1 Free Trial Left)</span>`;
     } else {
       if (pill) pill.textContent = `⚡ ${studioStore.wallet.paidCredits} Credits`;
-      if (btn) btn.innerHTML = `<span>Generate (1 Credit)</span>`;
+      if (btn) btn.innerHTML = `<span>Generate ${modeName} (1 Credit)</span>`;
     }
   } else {
     if (pill) {
@@ -180,7 +208,7 @@ function updateCreditDisplay() {
       pill.style.color = 'var(--accent-pink)';
     }
     if (btn) {
-      btn.innerHTML = '<span>🔒 Upgrade to Create (Trial Used)</span>';
+      btn.innerHTML = `<span>🔒 Upgrade to Create ${modeName} (Trial Used)</span>`;
     }
   }
 }
