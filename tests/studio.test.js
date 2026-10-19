@@ -71,11 +71,18 @@ describe('11AICreate — Studio & 1-Trial Paywall Verification', () => {
     assert.ok(feedback.includes('Director Advice') || feedback.includes('camera'), 'Copilot must offer cinematography guidance');
   });
 
-  test('should verify popular viral AI video showcase catalog is populated', () => {
-    assert.ok(POPULAR_AI_SHOWCASE.length >= 4, 'Must feature at least 4 popular showcase entries');
-    const first = POPULAR_AI_SHOWCASE[0];
-    assert.ok(first.videoUrl, 'Video showcase must contain streaming URL');
-    assert.ok(first.prompt, 'Showcase must have prompt directive');
+  test('should verify popular viral AI video showcase catalog is populated with moving videos on all items', () => {
+    assert.ok(POPULAR_AI_SHOWCASE.length >= 8, 'Must feature at least 8 popular showcase video entries');
+    for (const item of POPULAR_AI_SHOWCASE) {
+      assert.equal(item.type, 'video', `Every showcase item must be a video: ${item.id}`);
+      assert.ok(item.videoUrl, `Showcase item ${item.id} must contain video URL`);
+      assert.ok(item.thumbnail, `Showcase item ${item.id} must contain thumbnail`);
+      assert.ok(item.prompt, `Showcase item ${item.id} must have prompt directive`);
+
+      const localVideoPath = path.join(ROOT_DIR, 'public', item.videoUrl);
+      assert.ok(fs.existsSync(localVideoPath), `Local video file must exist: ${localVideoPath}`);
+      assert.ok(fs.statSync(localVideoPath).size > 10000, `Video file ${item.videoUrl} must not be empty`);
+    }
   });
 
   test('should verify cross-platform native codebase integrity (iOS & Android)', () => {

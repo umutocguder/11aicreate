@@ -29,11 +29,9 @@ function initShowcaseMarquee() {
   const items = [...POPULAR_AI_SHOWCASE, ...POPULAR_AI_SHOWCASE];
 
   track.innerHTML = items.map(item => `
-    <div class="video-card" data-prompt="${encodeURIComponent(item.prompt)}" data-type="${item.type}">
-      ${item.type === 'video' 
-        ? `<video src="${item.videoUrl}" autoplay loop muted playsinline poster="${item.thumbnail}"></video>`
-        : `<img src="${item.imageUrl || item.thumbnail}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;" />`
-      }
+    <div class="video-card" data-prompt="${encodeURIComponent(item.prompt)}" data-type="${item.type || 'video'}">
+      <div class="video-live-badge"><span class="pulse-dot"></span> LIVE AI VIDEO</div>
+      <video src="${item.videoUrl}" autoplay loop muted playsinline preload="auto" poster="${item.thumbnail}"></video>
       <div class="video-card-overlay">
         <span class="video-card-tag">${item.tag}</span>
         <div class="video-card-title">${item.title}</div>
@@ -41,6 +39,13 @@ function initShowcaseMarquee() {
       </div>
     </div>
   `).join('');
+
+  // Explicitly ensure muted autoplay starts on all videos
+  track.querySelectorAll('video').forEach(video => {
+    video.play().catch(() => {
+      // Browser autoplay policy graceful fallback
+    });
+  });
 
   // Click card to paste prompt into studio
   track.querySelectorAll('.video-card').forEach(card => {

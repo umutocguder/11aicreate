@@ -14,6 +14,8 @@ public struct GenerationItem: Identifiable, Codable {
     public let prompt: String
     public let model: String
     public let mediaUrl: String
+    public let thumbnailUrl: String
+    public let tag: String
     public let views: String
     public let likes: String
 }
@@ -64,10 +66,12 @@ public class AppViewModel: ObservableObject {
             let newItem = GenerationItem(
                 id: UUID().uuidString,
                 type: type,
-                title: "AI Master Creation",
+                title: "AI Cinema Masterpiece",
                 prompt: prompt,
                 model: model,
-                mediaUrl: "https://assets.mixkit.co/videos/preview/mixkit-futuristic-city-with-flying-cars-and-bright-lights-41551-large.mp4",
+                mediaUrl: "/videos/cyberpunk-tokyo.mp4",
+                thumbnailUrl: "/videos/thumbnails/cyberpunk-tokyo.jpg",
+                tag: "Live AI Render",
                 views: "1",
                 likes: "1"
             )
@@ -102,10 +106,12 @@ public class AppViewModel: ObservableObject {
             GenerationItem(
                 id: "v-1",
                 type: "video",
-                title: "Neo-Tokyo Cyberpunk Rain",
-                prompt: "Hyper-realistic cyberpunk street in Tokyo, neon rain, holographic dragons, 35mm lens",
+                title: "Cyberpunk Neo-Tokyo Rain",
+                prompt: "Cinematic hyper-detailed neo-Tokyo cyberpunk alley at night, torrential neon rain, holographic dragons, 35mm lens",
                 model: "11Cinema-Ultra-v2",
-                mediaUrl: "https://assets.mixkit.co/videos/preview/mixkit-futuristic-city-with-flying-cars-and-bright-lights-41551-large.mp4",
+                mediaUrl: "/videos/cyberpunk-tokyo.mp4",
+                thumbnailUrl: "/videos/thumbnails/cyberpunk-tokyo.jpg",
+                tag: "Trending AI Cinema",
                 views: "48.2K",
                 likes: "8.4K"
             ),
@@ -113,11 +119,85 @@ public class AppViewModel: ObservableObject {
                 id: "v-2",
                 type: "video",
                 title: "Quantum Abyss Leviathan",
-                prompt: "Bioluminescent whale swimming through space starlight, cyan magenta particles",
+                prompt: "Bioluminescent colossal whale navigating through liquid crystalline starlight in deep space, glowing tentacles, slow motion ethereal lighting",
                 model: "11Luma-Diffusion-X",
-                mediaUrl: "https://assets.mixkit.co/videos/preview/mixkit-color-powder-explosion-in-water-43331-large.mp4",
+                mediaUrl: "/videos/quantum-abyss.mp4",
+                thumbnailUrl: "/videos/thumbnails/quantum-abyss.jpg",
+                tag: "Editor Choice",
                 views: "62.9K",
                 likes: "14.1K"
+            ),
+            GenerationItem(
+                id: "v-3",
+                type: "video",
+                title: "Solarpunk Titan Forest",
+                prompt: "Towering biomechanical glass redwood trees absorbing sunlight, solar particles shimmering in mist, drone tracking shot at golden hour",
+                model: "11Sora-Gen-Prime",
+                mediaUrl: "/videos/solarpunk-forest.mp4",
+                thumbnailUrl: "/videos/thumbnails/solarpunk-forest.jpg",
+                tag: "Photorealistic",
+                views: "33.4K",
+                likes: "6.7K"
+            ),
+            GenerationItem(
+                id: "v-4",
+                type: "video",
+                title: "Desert Mirage Hypercar",
+                prompt: "Liquid mercury hypercar cruising across obsidian desert at twilight, heat distortion, trailing cyan lasers, 24fps cinema pan",
+                model: "11Kling-Motion-Studio",
+                mediaUrl: "/videos/desert-hypercar.mp4",
+                thumbnailUrl: "/videos/thumbnails/desert-hypercar.jpg",
+                tag: "Motion VFX",
+                views: "51.8K",
+                likes: "9.3K"
+            ),
+            GenerationItem(
+                id: "v-5",
+                type: "video",
+                title: "Obsidian Oracle Awakening",
+                prompt: "Hyper-realistic cybernetic oracle sculpted from obsidian and radiant gold filigree, glowing neon eyes awakening, dynamic cinematic dolly push",
+                model: "11Runway-Gen3-Alpha",
+                mediaUrl: "/videos/obsidian-oracle.mp4",
+                thumbnailUrl: "/videos/thumbnails/obsidian-oracle.jpg",
+                tag: "AI Character Motion",
+                views: "71.5K",
+                likes: "18.9K"
+            ),
+            GenerationItem(
+                id: "v-6",
+                type: "video",
+                title: "Quantum Neural Synapse",
+                prompt: "Macro camera fly-through inside quantum neural processor, pulsing violet and emerald synapses, data streams flowing at speed of light",
+                model: "11FLUX-Motion-Pro",
+                mediaUrl: "/videos/neon-synapse.mp4",
+                thumbnailUrl: "/videos/thumbnails/neon-synapse.jpg",
+                tag: "Quantum VFX",
+                views: "39.0K",
+                likes: "7.8K"
+            ),
+            GenerationItem(
+                id: "v-7",
+                type: "video",
+                title: "Cosmic Horizon Singularity",
+                prompt: "Interstellar accretion disk spinning around supermassive black hole, gravitational lensing bending starlight, epic cinematic slow motion 60fps",
+                model: "11Hailuo-MiniMax",
+                mediaUrl: "/videos/cosmic-blackhole.mp4",
+                thumbnailUrl: "/videos/thumbnails/cosmic-blackhole.jpg",
+                tag: "Sci-Fi Epic",
+                views: "84.1K",
+                likes: "22.3K"
+            ),
+            GenerationItem(
+                id: "v-8",
+                type: "video",
+                title: "Cyber Samurai Neon Duel",
+                prompt: "Cyber samurai with energized plasma katana in torrential rain, neon reflections on wet asphalt, dramatic low-angle camera roll",
+                model: "11Pika-Cinematic-v2",
+                mediaUrl: "/videos/cyber-samurai.mp4",
+                thumbnailUrl: "/videos/thumbnails/cyber-samurai.jpg",
+                tag: "Action Motion",
+                views: "56.7K",
+                likes: "12.8K"
             )
         ]
     }

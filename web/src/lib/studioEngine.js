@@ -13,8 +13,8 @@ export const POPULAR_AI_SHOWCASE = [
     title: 'Cyberpunk Neo-Tokyo Rain',
     prompt: 'Cinematic hyper-detailed neo-Tokyo cyberpunk alley at night, torrential neon rain, holographic dragons swimming through skyscrapers, 8k raw footage, 35mm anamorphic',
     model: '11Cinema-Ultra-v2',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-futuristic-city-with-flying-cars-and-bright-lights-41551-large.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80',
+    videoUrl: '/videos/cyberpunk-tokyo.mp4',
+    thumbnail: '/videos/thumbnails/cyberpunk-tokyo.jpg',
     aspectRatio: '16:9',
     views: '48.2K',
     likes: '8.4K',
@@ -26,8 +26,8 @@ export const POPULAR_AI_SHOWCASE = [
     title: 'Quantum Abyss Leviathan',
     prompt: 'Bioluminescent colossal whale navigating through liquid crystalline starlight in deep space, glowing tentacles, slow motion ethereal cinematic lighting',
     model: '11Luma-Diffusion-X',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-color-powder-explosion-in-water-43331-large.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+    videoUrl: '/videos/quantum-abyss.mp4',
+    thumbnail: '/videos/thumbnails/quantum-abyss.jpg',
     aspectRatio: '16:9',
     views: '62.9K',
     likes: '14.1K',
@@ -39,8 +39,8 @@ export const POPULAR_AI_SHOWCASE = [
     title: 'Solarpunk Titan Forest',
     prompt: 'Towering biomechanical glass redwood trees absorbing sunlight, solar particles shimmering in mist, drone tracking shot at golden hour',
     model: '11Sora-Gen-Prime',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-tree-branches-in-the-breeze-1188-large.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=800&q=80',
+    videoUrl: '/videos/solarpunk-forest.mp4',
+    thumbnail: '/videos/thumbnails/solarpunk-forest.jpg',
     aspectRatio: '16:9',
     views: '33.4K',
     likes: '6.7K',
@@ -52,38 +52,64 @@ export const POPULAR_AI_SHOWCASE = [
     title: 'Desert Mirage Hypercar',
     prompt: 'Liquid mercury hypercar cruising across obsidian desert at twilight, heat distortion, trailing cyan lasers, 24fps cinema pan',
     model: '11Kling-Motion-Studio',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-car-headlights-in-the-dark-42407-large.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80',
+    videoUrl: '/videos/desert-hypercar.mp4',
+    thumbnail: '/videos/thumbnails/desert-hypercar.jpg',
     aspectRatio: '16:9',
     views: '51.8K',
     likes: '9.3K',
     tag: 'Motion VFX'
   },
   {
-    id: 'img-01',
-    type: 'photo',
-    title: 'Obsidian Oracle Goddess',
-    prompt: 'Photorealistic portrait of a futuristic android oracle sculpted from black obsidian and radiant gold filigree, studio lighting, Hasselblad 100c',
-    model: '11FLUX-Master-1.1',
-    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-    thumbnail: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80',
-    aspectRatio: '1:1',
+    id: 'vid-05',
+    type: 'video',
+    title: 'Obsidian Oracle Awakening',
+    prompt: 'Hyper-realistic cybernetic oracle sculpted from obsidian and radiant gold filigree, glowing neon eyes awakening, dynamic cinematic dolly push, 8k',
+    model: '11Runway-Gen3-Alpha',
+    videoUrl: '/videos/obsidian-oracle.mp4',
+    thumbnail: '/videos/thumbnails/obsidian-oracle.jpg',
+    aspectRatio: '16:9',
     views: '71.5K',
     likes: '18.9K',
-    tag: 'Portrait Master'
+    tag: 'AI Character Motion'
   },
   {
-    id: 'img-02',
-    type: 'photo',
-    title: 'Neon Synapse Brain Circuit',
-    prompt: 'Macro photography of quantum computer neural processor, glowing violet and emerald light pulses, liquid nitrogen vapors',
-    model: '11FLUX-Master-1.1',
-    imageUrl: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80',
-    thumbnail: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80',
+    id: 'vid-06',
+    type: 'video',
+    title: 'Quantum Neural Synapse',
+    prompt: 'Macro camera fly-through inside quantum neural processor, pulsing violet and emerald synapses, data streams flowing at speed of light, cinematic motion',
+    model: '11FLUX-Motion-Pro',
+    videoUrl: '/videos/neon-synapse.mp4',
+    thumbnail: '/videos/thumbnails/neon-synapse.jpg',
     aspectRatio: '16:9',
     views: '39.0K',
     likes: '7.8K',
-    tag: 'Macro Tech'
+    tag: 'Quantum VFX'
+  },
+  {
+    id: 'vid-07',
+    type: 'video',
+    title: 'Cosmic Horizon Singularity',
+    prompt: 'Interstellar accretion disk spinning around supermassive black hole, gravitational lensing bending starlight, epic cinematic slow motion 60fps',
+    model: '11Hailuo-MiniMax',
+    videoUrl: '/videos/cosmic-blackhole.mp4',
+    thumbnail: '/videos/thumbnails/cosmic-blackhole.jpg',
+    aspectRatio: '16:9',
+    views: '84.1K',
+    likes: '22.3K',
+    tag: 'Sci-Fi Epic'
+  },
+  {
+    id: 'vid-08',
+    type: 'video',
+    title: 'Cyber Samurai Neon Duel',
+    prompt: 'Cyber samurai with energized plasma katana in torrential rain, neon reflections on wet asphalt, dramatic low-angle camera roll',
+    model: '11Pika-Cinematic-v2',
+    videoUrl: '/videos/cyber-samurai.mp4',
+    thumbnail: '/videos/thumbnails/cyber-samurai.jpg',
+    aspectRatio: '16:9',
+    views: '56.7K',
+    likes: '12.8K',
+    tag: 'Action Motion'
   }
 ];
 
@@ -125,18 +151,24 @@ export async function generateContent({ prompt, type = 'video', model = '11Cinem
   // 3. Consume generation credit (free trial or paid)
   studioStore.consumeGenerationCredit();
 
-  // 3. Synthesize result
+  // 4. Synthesize result
   let outputUrl = '';
   let thumbnail = '';
 
   if (type === 'video') {
     const videoPool = [
-      'https://assets.mixkit.co/videos/preview/mixkit-futuristic-city-with-flying-cars-and-bright-lights-41551-large.mp4',
-      'https://assets.mixkit.co/videos/preview/mixkit-color-powder-explosion-in-water-43331-large.mp4',
-      'https://assets.mixkit.co/videos/preview/mixkit-car-headlights-in-the-dark-42407-large.mp4'
+      { videoUrl: '/videos/cyberpunk-tokyo.mp4', thumbnail: '/videos/thumbnails/cyberpunk-tokyo.jpg' },
+      { videoUrl: '/videos/quantum-abyss.mp4', thumbnail: '/videos/thumbnails/quantum-abyss.jpg' },
+      { videoUrl: '/videos/solarpunk-forest.mp4', thumbnail: '/videos/thumbnails/solarpunk-forest.jpg' },
+      { videoUrl: '/videos/desert-hypercar.mp4', thumbnail: '/videos/thumbnails/desert-hypercar.jpg' },
+      { videoUrl: '/videos/obsidian-oracle.mp4', thumbnail: '/videos/thumbnails/obsidian-oracle.jpg' },
+      { videoUrl: '/videos/neon-synapse.mp4', thumbnail: '/videos/thumbnails/neon-synapse.jpg' },
+      { videoUrl: '/videos/cosmic-blackhole.mp4', thumbnail: '/videos/thumbnails/cosmic-blackhole.jpg' },
+      { videoUrl: '/videos/cyber-samurai.mp4', thumbnail: '/videos/thumbnails/cyber-samurai.jpg' }
     ];
-    outputUrl = videoPool[Math.floor(Math.random() * videoPool.length)];
-    thumbnail = 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80';
+    const picked = videoPool[Math.floor(Math.random() * videoPool.length)];
+    outputUrl = picked.videoUrl;
+    thumbnail = picked.thumbnail;
   } else if (type === 'photo') {
     const photoPool = [
       'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',

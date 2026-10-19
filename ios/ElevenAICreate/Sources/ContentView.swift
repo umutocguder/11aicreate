@@ -103,26 +103,110 @@ public struct ContentView: View {
                             .padding(.horizontal)
                             .disabled(vm.isGenerating)
                             
-                            // Feed of Generations
-                            VStack(alignment: .leading, spacing: 14) {
-                                Text("RECENT PRODUCTIONS")
-                                    .font(.caption.bold())
-                                    .foregroundColor(.gray)
-                                    .padding(.horizontal)
+                            // Popular AI Video Showcase Feed
+                            VStack(alignment: .leading, spacing: 16) {
+                                HStack {
+                                    Image(systemName: "film.stack")
+                                        .foregroundColor(.cyan)
+                                    Text("POPULAR AI VIDEO SHOWCASE")
+                                        .font(.caption.bold())
+                                        .foregroundColor(.gray)
+                                }
+                                .padding(.horizontal)
                                 
                                 ForEach(vm.recentGenerations) { item in
-                                    VStack(alignment: .leading, spacing: 8) {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        // Video Preview Banner
+                                        ZStack(alignment: .topLeading) {
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .fill(
+                                                    LinearGradient(
+                                                        colors: [Color(red: 0.10, green: 0.12, blue: 0.18), Color(red: 0.05, green: 0.06, blue: 0.09)],
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    )
+                                                )
+                                                .frame(height: 180)
+                                                .overlay(
+                                                    VStack(spacing: 8) {
+                                                        Image(systemName: "play.circle.fill")
+                                                            .font(.system(size: 44))
+                                                            .foregroundStyle(
+                                                                LinearGradient(colors: [.cyan, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                                            )
+                                                            .shadow(color: .cyan.opacity(0.4), radius: 10)
+                                                        Text("Streaming 4K AI Cinema Preview")
+                                                            .font(.caption2.bold())
+                                                            .foregroundColor(.gray)
+                                                    }
+                                                )
+                                            
+                                            // Live Video Badge
+                                            HStack(spacing: 6) {
+                                                Circle()
+                                                    .fill(Color.cyan)
+                                                    .frame(width: 6, height: 6)
+                                                Text("🎬 LIVE AI VIDEO")
+                                                    .font(.system(size: 10, weight: .heavy))
+                                                    .foregroundColor(.cyan)
+                                            }
+                                            .padding(.horizontal, 8)
+                                            .padding(.vertical, 4)
+                                            .background(Color.black.opacity(0.75))
+                                            .cornerRadius(8)
+                                            .padding(10)
+                                        }
+                                        .cornerRadius(12)
+                                        
+                                        // Details
+                                        HStack {
+                                            Text(item.tag)
+                                                .font(.caption2.bold())
+                                                .foregroundColor(.cyan)
+                                            Spacer()
+                                            Text(item.model)
+                                                .font(.caption2)
+                                                .foregroundColor(.purple)
+                                        }
+                                        
                                         Text(item.title)
                                             .font(.headline)
+                                            .foregroundColor(.white)
+                                        
                                         Text(item.prompt)
                                             .font(.subheadline)
                                             .foregroundColor(.gray)
-                                            .lineLimit(2)
+                                            .lineLimit(3)
+                                        
+                                        HStack {
+                                            Text("👁️ \(item.views)   ❤️ \(item.likes)")
+                                                .font(.caption2)
+                                                .foregroundColor(.gray)
+                                            
+                                            Spacer()
+                                            
+                                            Button(action: {
+                                                promptText = item.prompt
+                                                selectedMode = "video"
+                                            }) {
+                                                Text("Use Prompt")
+                                                    .font(.caption.bold())
+                                                    .padding(.horizontal, 10)
+                                                    .padding(.vertical, 5)
+                                                    .background(Color.cyan.opacity(0.2))
+                                                    .foregroundColor(.cyan)
+                                                    .cornerRadius(8)
+                                            }
+                                        }
                                     }
                                     .padding()
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .background(Color(red: 0.07, green: 0.08, blue: 0.12))
-                                    .cornerRadius(12)
+                                    .cornerRadius(14)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 14)
+                                            .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                                    )
                                     .padding(.horizontal)
                                 }
                             }

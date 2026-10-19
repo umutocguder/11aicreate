@@ -268,6 +268,41 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.video-live-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(10, 10, 16, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  color: var(--accent-cyan);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 2;
+  letter-spacing: 0.5px;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent-cyan);
+  animation: pulseDotAnim 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseDotAnim {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
 }
 
 .video-card-overlay {
@@ -278,6 +313,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  pointer-events: none;
 }
 
 .video-card-tag {
