@@ -45,6 +45,31 @@ All architectural updates, technical iterations, and AI handoff states are logge
 - Linter reports 0 errors.
 - Autonomous backup executed.
 
-### Next Steps
-- Deploy web client to Vercel (`11aicreate.vercel.app`).
-- Connect remote Supabase project credentials in production environment.
+---
+
+## 2026-10-19 21:16 — Interactive Studio Mode Tabs & Browser Runtime Compatibility Fix
+
+### Task & Objective
+- Fix tab interactivity issue where clicking "AI Photo Studio" and "AI Director Copilot" buttons did not respond.
+- Diagnose and eliminate runtime exceptions preventing client scripts from executing.
+- Ensure end-to-end interactive capability and verify on production deployment.
+
+### Findings & Root Cause Analysis
+- Client-side ES module `supabaseClient.js` referenced Node.js global `process.env` directly without checking `typeof process !== 'undefined'`.
+- In standard browser execution context, this triggered an unhandled `ReferenceError: process is not defined` during module initialization, terminating script evaluation before `initModeTabs()` was attached to DOM events.
+
+### Architectural Fixes & Enhancements
+1. **Defensive Runtime Environment Guarding**:
+   - Updated `web/src/lib/supabaseClient.js` and `public/src/lib/supabaseClient.js` to guard `process.env` access via `(typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_SUPABASE_URL)`.
+2. **Mode Switcher Reactive Controls**:
+   - Enhanced `initModeTabs()` in `public/app.js`:
+     - **Video Mode**: Configures cinema model presets, 16:9 aspect ratio, and dynamic video generation CTA.
+     - **Photo Mode**: Automatically switches model to `11FLUX-Master-1.1`, defaults aspect ratio to 1:1 square render, and updates button CTA.
+     - **Chat Mode**: Transitions into free AI Director Copilot consultation, hides media ratio selectors, and lets users consult without consuming video generation credits.
+   - Updated hover and active neon borders in `public/style.css` with glow effects.
+3. **Verification & Deployment**:
+   - All 8 unit tests passed 100%.
+   - Rule 20 static analysis verified with 0 lint errors.
+   - Verified interactivity with Puppeteer on production site `https://11aicreate.vercel.app`.
+   - Deployed updated build to production via Vercel CLI.
+

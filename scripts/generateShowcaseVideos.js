@@ -23,58 +23,50 @@ const VIDEO_DEFINITIONS = [
   {
     filename: 'cyberpunk-tokyo.mp4',
     thumb: 'cyberpunk-tokyo.jpg',
-    imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80',
-    zoomExpr: "z='min(zoom+0.0014,1.25)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'",
-    duration: 4
+    imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0015,1.25)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
   },
   {
     filename: 'quantum-abyss.mp4',
     thumb: 'quantum-abyss.jpg',
-    imageUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1920&q=80',
-    zoomExpr: "z='min(zoom+0.0016,1.28)':x='iw/2-(iw/zoom/2)+sin(in/15)*15':y='ih/2-(ih/zoom/2)'",
-    duration: 4
+    imageUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0016,1.26)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
   },
   {
     filename: 'solarpunk-forest.mp4',
     thumb: 'solarpunk-forest.jpg',
-    imageUrl: 'https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=1920&q=80',
-    zoomExpr: "z='min(zoom+0.0012,1.2)':x='iw/2-(iw/zoom/2)+in*0.4':y='ih/2-(ih/zoom/2)'",
-    duration: 4
+    imageUrl: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0014,1.22)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
   },
   {
     filename: 'desert-hypercar.mp4',
     thumb: 'desert-hypercar.jpg',
-    imageUrl: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1920&q=80',
-    zoomExpr: "z='min(zoom+0.0018,1.3)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'",
-    duration: 4
+    imageUrl: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0018,1.28)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
   },
   {
     filename: 'obsidian-oracle.mp4',
     thumb: 'obsidian-oracle.jpg',
-    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80',
-    zoomExpr: "z='min(zoom+0.0013,1.22)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)-in*0.2'",
-    duration: 4
+    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0013,1.2)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
   },
   {
     filename: 'neon-synapse.mp4',
     thumb: 'neon-synapse.jpg',
-    imageUrl: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1920&q=80',
-    zoomExpr: "z='min(zoom+0.002,1.35)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'",
-    duration: 4
+    imageUrl: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.002,1.3)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
   },
   {
     filename: 'cosmic-blackhole.mp4',
     thumb: 'cosmic-blackhole.jpg',
-    imageUrl: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1920&q=80',
-    zoomExpr: "z='min(zoom+0.0015,1.25)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'",
-    duration: 4
+    imageUrl: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0015,1.24)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
   },
   {
     filename: 'cyber-samurai.mp4',
     thumb: 'cyber-samurai.jpg',
-    imageUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1920&q=80',
-    zoomExpr: "z='min(zoom+0.0016,1.26)':x='iw/2-(iw/zoom/2)+sin(in/20)*10':y='ih/2-(ih/zoom/2)'",
-    duration: 4
+    imageUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0016,1.25)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
   }
 ];
 
@@ -91,8 +83,7 @@ async function generateAllVideos() {
       execSync(`curl -s -L "${def.imageUrl}" -o "${tempImg}"`);
       fs.copyFileSync(tempImg, thumbPath);
 
-      const frames = def.duration * 30;
-      const ffmpegCmd = `ffmpeg -y -loop 1 -i "${tempImg}" -filter_complex "[0:v]scale=2560x1440,zoompan=${def.zoomExpr}:d=${frames}:s=960x540:fps=30[v]" -map "[v]" -t ${def.duration} -c:v libx264 -preset fast -pix_fmt yuv420p -movflags +faststart "${videoPath}"`;
+      const ffmpegCmd = `ffmpeg -y -loop 1 -i "${tempImg}" -filter_complex "[0:v]scale=1280:720,zoompan=${def.zoomExpr}:d=90:s=960x540:fps=30[v]" -map "[v]" -t 3 -c:v libx264 -preset veryfast -pix_fmt yuv420p -movflags +faststart "${videoPath}"`;
       
       execSync(ffmpegCmd, { stdio: 'ignore' });
       
