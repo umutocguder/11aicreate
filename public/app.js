@@ -12,6 +12,8 @@ let currentMode = 'video';
 
 document.addEventListener('DOMContentLoaded', () => {
   initShowcaseMarquee();
+  initTrendingGallery();
+  initTheaterModal();
   initModeTabs();
   initStudioActions();
   initAuthUI();
@@ -20,46 +22,50 @@ document.addEventListener('DOMContentLoaded', () => {
   logTelemetry('page_view_home', { referrer: document.referrer });
 });
 
-// 1. Showcase Video Marquee
+// 1. Showcase Video Dual Marquee
 function initShowcaseMarquee() {
-  const track = document.getElementById('marqueeTrack');
-  if (!track) return;
+  const track1 = document.getElementById('marqueeTrack1');
+  const track2 = document.getElementById('marqueeTrack2');
+  const legacyTrack = document.getElementById('marqueeTrack');
 
-  // Duplicate items for continuous seamless infinite loop
-  const items = [...POPULAR_AI_SHOWCASE, ...POPULAR_AI_SHOWCASE];
+  // Split into two diverse groups of 8 items
+  const group1 = POPULAR_AI_SHOWCASE.slice(0, 8);
+  const group2 = POPULAR_AI_SHOWCASE.slice(8, 16);
 
-  track.innerHTML = items.map(item => `
-    <div class="video-card" data-prompt="${encodeURIComponent(item.prompt)}" data-type="${item.type || 'video'}">
-      <div class="video-live-badge"><span class="pulse-dot"></span> LIVE AI VIDEO</div>
-      <video src="${item.videoUrl}" autoplay loop muted playsinline preload="auto" poster="${item.thumbnail}"></video>
-      <div class="video-card-overlay">
-        <span class="video-card-tag">${item.tag}</span>
-        <div class="video-card-title">${item.title}</div>
-        <div style="font-size:11px; color:#cbd5e1; margin-top:2px;">👁️ ${item.views} &nbsp; ❤️ ${item.likes}</div>
+  function renderMarqueeRow(container, items) {
+    if (!container) return;
+    // Duplicate for seamless 360 loop
+    const looped = [...items, ...items];
+    container.innerHTML = looped.map(item => `
+      <div class="video-card" data-id="${item.id}" data-prompt="${encodeURIComponent(item.prompt)}" data-model="${item.model || ''}" data-ratio="${item.aspectRatio || '16:9'}">
+        <div class="video-live-badge"><span class="pulse-dot"></span> LIVE AI VIDEO</div>
+        <video src="${item.videoUrl}" autoplay loop muted playsinline preload="auto" poster="${item.thumbnail}"></video>
+        <div class="video-card-overlay">
+          <span class="video-card-tag">${item.tag || item.categoryLabel}</span>
+          <div class="video-card-title">${item.title}</div>
+          <div style="font-size:11px; color:#cbd5e1; margin-top:2px;">👁️ ${item.views} &nbsp; ❤️ ${item.likes}</div>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `).join('');
 
-  // Explicitly ensure muted autoplay starts on all videos
-  track.querySelectorAll('video').forEach(video => {
-    video.play().catch(() => {
-      // Browser autoplay policy graceful fallback
+    container.querySelectorAll('video').forEach(video => {
+      video.play().catch(() => {});
     });
-  });
 
-  // Click card to paste prompt into studio
-  track.querySelectorAll('.video-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const prompt = decodeURIComponent(card.dataset.prompt);
-      const promptBox = document.getElementById('promptInput');
-      if (promptBox) {
-        promptBox.value = prompt;
-        promptBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        promptBox.focus();
-        logTelemetry('showcase_prompt_selected', { promptPreview: prompt.substring(0, 50) });
-      }
+    container.querySelectorAll('.video-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const prompt = decodeURIComponent(card.dataset.prompt);
+        usePromptInStudio(prompt, card.dataset.model, card.dataset.ratio);
+      });
     });
-  });
+  }
+
+  if (track1 && track2) {
+    renderMarqueeRow(track1, group1);
+    renderMarqueeRow(track2, group2);
+  } else if (legacyTrack) {
+    renderMarqueeRow(legacyTrack, POPULAR_AI_SHOWCASE);
+  }
 }
 
 // 2. Mode Tabs

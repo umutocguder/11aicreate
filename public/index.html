@@ -106,16 +106,21 @@
       </div>
     </section>
 
-    <!-- Endless Looping Video Showcase Strip -->
-    <section id="showcase" style="position:relative; z-index:10;">
-      <div style="text-align:center; margin-bottom: 12px;">
+    <!-- Endless Dual Looping Video Showcase Strip -->
+    <section id="showcase" style="position:relative; z-index:10; margin-bottom: 40px;">
+      <div style="text-align:center; margin-bottom: 16px;">
         <span style="font-size:12px; font-weight:800; color:var(--accent-cyan); text-transform:uppercase; letter-spacing:1px;">Trending Worldwide</span>
         <h2 style="font-size:28px; font-weight:800;">Popular AI Video Showcase</h2>
         <p style="color:var(--text-muted); font-size:14px; margin-top:4px;">Stream real-time animated AI cinema previews generated with Sora, Luma, Kling & Runway</p>
       </div>
+      <div class="video-marquee-container" style="margin-bottom: 14px;">
+        <div id="marqueeTrack1" class="video-marquee-track video-marquee-track-1">
+          <!-- Marquee Row 1 populated dynamically by app.js -->
+        </div>
+      </div>
       <div class="video-marquee-container">
-        <div id="marqueeTrack" class="video-marquee-track">
-          <!-- Marquee populated dynamically by app.js -->
+        <div id="marqueeTrack2" class="video-marquee-track video-marquee-track-2">
+          <!-- Marquee Row 2 populated dynamically by app.js -->
         </div>
       </div>
     </section>
@@ -198,6 +203,49 @@
           <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">Modern Kotlin & Jetpack Compose 1.7 UI, ExoPlayer video stream cards, Material3 dynamic theme, and Coroutines.</p>
           <span style="color:var(--accent-pink); font-size:13px; font-weight:600;">Status: ● Jetpack Compose Ready</span>
         </div>
+      </div>
+    </section>
+
+    <!-- Picsart-Style Explore Popular AI Video Styles & Prompts -->
+    <section id="trending-gallery" class="trending-gallery-section">
+      <div class="gallery-header">
+        <div class="hero-pill" style="margin-bottom: 14px;">
+          <span>🎬 16 Video-Ready AI Styles & Prompts</span>
+        </div>
+        <h2 class="gallery-title">Explore Popular AI Video Generations</h2>
+        <p class="gallery-subtitle">
+          Browse rich moving video previews across 3D animation, cyberpunk, cinema film, wildlife, and surreal VFX. Click any video to inspect the prompt, or tap "Use Prompt" to load it straight into the 11AICreate Studio.
+        </p>
+
+        <!-- Category Filter Tabs (Picsart Style) -->
+        <div class="gallery-filter-tabs">
+          <button class="gallery-tab active" data-category="all">
+            <span>🌟</span> All Styles (16)
+          </button>
+          <button class="gallery-tab" data-category="cinema">
+            <span>🎬</span> Cinematic Film
+          </button>
+          <button class="gallery-tab" data-category="cyberpunk">
+            <span>🦾</span> Cyberpunk & Sci-Fi
+          </button>
+          <button class="gallery-tab" data-category="anime3d">
+            <span>👾</span> 3D & Anime Animation
+          </button>
+          <button class="gallery-tab" data-category="nature">
+            <span>🌿</span> Nature & Wildlife
+          </button>
+          <button class="gallery-tab" data-category="surreal">
+            <span>💥</span> Surreal VFX & Morph
+          </button>
+          <button class="gallery-tab" data-category="fashion">
+            <span>👗</span> Fashion & Character
+          </button>
+        </div>
+      </div>
+
+      <!-- Responsive Video Grid -->
+      <div id="galleryGrid" class="gallery-grid">
+        <!-- Populated dynamically by app.js -->
       </div>
     </section>
 
@@ -305,6 +353,42 @@
         </button>
       </form>
     </div>
+  </div>
+
+  <!-- Video Theater Modal (Picsart-Style Video Inspection) -->
+  <div id="theaterModal" class="modal-overlay">
+    <div class="modal-content theater-modal-content">
+      <button id="closeTheater" class="modal-close">&times;</button>
+      <div class="theater-player-wrapper">
+        <video id="theaterVideo" controls autoplay loop playsinline></video>
+      </div>
+      <div class="theater-details">
+        <div class="theater-badges">
+          <span id="theaterCategory" class="video-card-tag">Category</span>
+          <span id="theaterModel" class="badge-model">Model</span>
+          <span id="theaterQuality" class="badge-quality">Quality</span>
+        </div>
+        <h3 id="theaterTitle" style="font-size:22px; font-weight:800; margin: 12px 0 8px 0;"></h3>
+        <div style="background:rgba(5,5,8,0.7); border:1px solid var(--border-color); border-radius:12px; padding:14px; margin-bottom:16px; text-align:left;">
+          <span style="font-size:11px; text-transform:uppercase; color:var(--text-muted); font-weight:700;">Prompt:</span>
+          <p id="theaterPrompt" style="color:#e2e8f0; font-size:14px; line-height:1.5; margin-top:4px;"></p>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button id="btnTheaterUsePrompt" class="btn-primary" style="flex:1; padding:12px 20px; font-size:14px;">
+            ⚡ Use This Prompt in Studio
+          </button>
+          <button id="btnTheaterCopyPrompt" class="btn-secondary" style="padding:12px 18px; font-size:14px;">
+            📋 Copy Prompt
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Feedback Toast -->
+  <div id="promptToast" class="prompt-toast">
+    <span id="toastIcon">✨</span>
+    <span id="toastMessage">Prompt loaded into Studio!</span>
   </div>
 
   <!-- Footer (Rule 9: Created by 11Hopem & https://11hopem.com) -->

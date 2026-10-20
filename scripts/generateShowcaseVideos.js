@@ -67,16 +67,69 @@ const VIDEO_DEFINITIONS = [
     thumb: 'cyber-samurai.jpg',
     imageUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1280&q=80',
     zoomExpr: "z='min(zoom+0.0016,1.25)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+  },
+  {
+    filename: 'pixar-dragon.mp4',
+    thumb: 'pixar-dragon.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0017,1.28)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+  },
+  {
+    filename: 'neon-tiger.mp4',
+    thumb: 'neon-tiger.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0015,1.24)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+  },
+  {
+    filename: 'crystal-islands.mp4',
+    thumb: 'crystal-islands.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0014,1.22)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+  },
+  {
+    filename: 'fashion-silk.mp4',
+    thumb: 'fashion-silk.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0016,1.26)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+  },
+  {
+    filename: 'steampunk-armada.mp4',
+    thumb: 'steampunk-armada.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0015,1.25)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+  },
+  {
+    filename: 'cyber-mecha.mp4',
+    thumb: 'cyber-mecha.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0018,1.27)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+  },
+  {
+    filename: 'liquid-gold-morph.mp4',
+    thumb: 'liquid-gold-morph.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.002,1.3)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+  },
+  {
+    filename: 'cyberpunk-geisha.mp4',
+    thumb: 'cyberpunk-geisha.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1280&q=80',
+    zoomExpr: "z='min(zoom+0.0015,1.25)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
   }
 ];
 
 async function generateAllVideos() {
-  console.log('🎬 [11AICreate Video Generator]: Generating 8 popular moving AI videos with ffmpeg...');
+  console.log('🎬 [11AICreate Video Generator]: Generating 16 popular moving AI videos with ffmpeg...');
   
   for (const def of VIDEO_DEFINITIONS) {
     const videoPath = path.join(VIDEOS_DIR, def.filename);
     const thumbPath = path.join(THUMBS_DIR, def.thumb);
     const tempImg = path.join(ROOT_DIR, `temp_${def.filename}.jpg`);
+
+    if (fs.existsSync(videoPath) && fs.existsSync(thumbPath)) {
+      console.log(`⚡ [Cached]: ${def.filename} already rendered.`);
+      continue;
+    }
 
     console.log(`⏳ Downloading keyframe & rendering: ${def.filename}...`);
     try {
