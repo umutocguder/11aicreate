@@ -118,4 +118,43 @@ All architectural updates, technical iterations, and AI handoff states are logge
    - Ran `npm run lint` (0 errors across 21 files).
    - Visually confirmed all 16 marquee video elements playing simultaneously (`currentTime > 0`, `paused: false`, `readyState: 4`) with Puppeteer screenshot.
 
+---
+
+## 2026-10-20 09:50 — Picsart-Style Rich AI Video Previews & Style Explorer Overhaul
+
+### Task & Objective
+- Address user requirement: Align the web platform's popular AI video previews with the rich, dense catalog style of Picsart AI Video Generator (`https://picsart.com/ai-video-generator/`).
+- Expand the video preview inventory to 16 diverse high-definition moving videos across all major creative AI categories.
+- Build an interactive dual-track marquee, a category-filtered video style explorer, and a cinema theater inspection modal.
+
+### Architectural Enhancements & Additions
+1. **Catalog Expansion to 16 High-FPS Moving AI Videos**:
+   - Rendered 8 additional cinematic motion clips using ffmpeg zoompan with faststart MP4 encoding:
+     - `pixar-dragon.mp4` (3D & Anime Animation / Pixar 4K)
+     - `neon-tiger.mp4` (Nature & Wildlife / National Geo 8K)
+     - `crystal-islands.mp4` (Surreal VFX & Dreamscape / Fantasy 4K)
+     - `fashion-silk.mp4` (Fashion & Character / Vogue 8K)
+     - `steampunk-armada.mp4` (Cinematic Film / IMAX Cinema)
+     - `cyber-mecha.mp4` (Cyberpunk VFX / Sci-Fi Mecha 4K)
+     - `liquid-gold-morph.mp4` (Surreal VFX / Fluid 4K 60FPS)
+     - `cyberpunk-geisha.mp4` (3D & Anime Animation / Anamorphic 8K)
+2. **Dual-Track Cinematic Marquee (`public/index.html`, `public/style.css`, `public/app.js`)**:
+   - Track 1: Items 1–8 smoothly translating left (`marqueeRollLeft`).
+   - Track 2: Items 9–16 smoothly translating right (`marqueeRollRight`).
+   - Interactive hover-pause and 1-click prompt loading.
+3. **Picsart-Style Category Style Explorer (`#trending-gallery`)**:
+   - Category filter pills: All Styles (16), 🎬 Cinematic Film, 🦾 Cyberpunk & Sci-Fi, 👾 3D & Anime, 🌿 Nature & Wildlife, 💥 Surreal VFX & Morph, 👗 Fashion & Character.
+   - Dynamic 4-column responsive grid with hover zoom, AI model badges (`Kling`, `Sora 2`, `Luma`, `Runway`, `FLUX`, `Hailuo`), resolution pills (`4K 60FPS`, `8K HDR`), and duration indicators.
+   - Action buttons:
+     - **"⚡ Use Prompt"**: Injects prompt into Studio `#promptInput`, selects optimal model and aspect ratio, triggers `.studio-highlight-pulse` animation, and smoothly scrolls up.
+     - **"📋 Copy"**: Copies prompt text to clipboard with floating toast notification.
+     - **"❤️ Live Likes"**: Real-time interactive heart counter with formatting.
+4. **Cinematic Theater Modal (`#theaterModal`)**:
+   - Enlarged video player for prompt inspection and model breakdown.
+5. **Testing & Quality Assurance**:
+   - `npm test`: 8/8 tests passed (100%).
+   - `npm run lint`: 0 lint errors across 22 files.
+   - Local Puppeteer verification: confirmed category filtering, prompt injection, like toggling, and theater modal.
+
+
 

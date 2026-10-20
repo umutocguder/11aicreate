@@ -378,8 +378,10 @@ function initTrendingGallery() {
         if (likeBtn.classList.contains('liked')) return;
         likeBtn.classList.add('liked');
         const countSpan = likeBtn.querySelector('.like-counter');
-        const currentLikes = parseInt(countSpan.textContent.replace(/[^\d]/g, '')) || 0;
-        countSpan.textContent = (currentLikes + 1).toLocaleString();
+        const text = countSpan.textContent.trim();
+        let val = text.includes('K') ? Math.round(parseFloat(text) * 1000) : (parseInt(text, 10) || 0);
+        val++;
+        countSpan.textContent = val >= 1000 ? (val / 1000).toFixed(1) + 'K' : val.toString();
         showToast('Added to your favorite styles! ❤️', '❤️');
         logTelemetry('gallery_item_liked', { id: item.id });
       });
