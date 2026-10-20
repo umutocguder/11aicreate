@@ -295,4 +295,239 @@ function renderAuthUser(user) {
   }
 }
 
+// 6. Picsart-Style Trending Video Gallery Explorer
+let activeGalleryCategory = 'all';
+
+function initTrendingGallery() {
+  const grid = document.getElementById('galleryGrid');
+  const tabs = document.querySelectorAll('.gallery-tab');
+  if (!grid) return;
+
+  function renderGrid(category) {
+    const filtered = category === 'all' 
+      ? POPULAR_AI_SHOWCASE 
+      : POPULAR_AI_SHOWCASE.filter(item => item.category === category);
+
+    grid.innerHTML = filtered.map(item => `
+      <div class="gallery-card" data-id="${item.id}" data-category="${item.category}">
+        <div class="gallery-media-wrapper" data-action="theater">
+          <div class="gallery-top-badges">
+            <span class="badge-model">${item.model}</span>
+            <span class="badge-quality">${item.quality || '4K 60FPS'}</span>
+          </div>
+          <video src="${item.videoUrl}" autoplay loop muted playsinline preload="auto" poster="${item.thumbnail}"></video>
+          <span class="badge-duration">${item.duration || '0:05'}</span>
+        </div>
+        <div class="gallery-body">
+          <span class="gallery-card-category">${item.categoryLabel || item.tag}</span>
+          <div class="gallery-card-title">${item.title}</div>
+          <div class="gallery-card-prompt" title="${item.prompt}">${item.prompt}</div>
+          <div class="gallery-card-footer">
+            <button class="btn-use-prompt" data-action="use-prompt">
+              <span>⚡ Use Prompt</span>
+            </button>
+            <button class="btn-copy-prompt" data-action="copy-prompt" title="Copy full prompt">
+              📋
+            </button>
+            <button class="gallery-like-btn" data-action="like" data-likes="${item.likes}">
+              <span>❤️</span> <span class="like-counter">${item.likes}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // Ensure all videos play
+    grid.querySelectorAll('video').forEach(v => {
+      v.play().catch(() => {});
+    });
+
+    // Attach card event listeners
+    grid.querySelectorAll('.gallery-card').forEach(card => {
+      const id = card.dataset.id;
+      const item = POPULAR_AI_SHOWCASE.find(i => i.id === id);
+      if (!item) return;
+
+      // Click video wrapper to open theater modal
+      card.querySelector('[data-action="theater"]')?.addEventListener('click', () => {
+        if (window.openTheaterModal) window.openTheaterModal(item);
+      });
+
+      // Use prompt button
+      card.querySelector('[data-action="use-prompt"]')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        usePromptInStudio(item.prompt, item.model, item.aspectRatio, item.title);
+      });
+
+      // Copy prompt button
+      card.querySelector('[data-action="copy-prompt"]')?.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        try {
+          await navigator.clipboard.writeText(item.prompt);
+          showToast('Copied full prompt to clipboard!', '📋');
+          logTelemetry('gallery_prompt_copied', { id: item.id });
+        } catch (err) {
+          showToast('Prompt copied!', '📋');
+        }
+      });
+
+      // Like button
+      const likeBtn = card.querySelector('[data-action="like"]');
+      likeBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (likeBtn.classList.contains('liked')) return;
+        likeBtn.classList.add('liked');
+        const countSpan = likeBtn.querySelector('.like-counter');
+        const currentLikes = parseInt(countSpan.textContent.replace(/[^\d]/g, '')) || 0;
+        countSpan.textContent = (currentLikes + 1).toLocaleString();
+        showToast('Added to your favorite styles! ❤️', '❤️');
+        logTelemetry('gallery_item_liked', { id: item.id });
+      });
+    });
+  }
+
+  // Filter tab clicks
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeGalleryCategory = tab.dataset.category;
+      renderGrid(activeGalleryCategory);
+      logTelemetry('gallery_tab_filtered', { category: activeGalleryCategory });
+    });
+  });
+
+  // Initial render
+  renderGrid('all');
+}
+
+// 7. Inject prompt into Studio with highlight animation
+function usePromptInStudio(prompt, model = null, ratio = null, title = '') {
+  const promptBox = document.getElementById('promptInput');
+  const modelSelect = document.getElementById('modelSelect');
+  const ratioSelect = document.getElementById('ratioSelect');
+  const studioCard = document.querySelector('.studio-card');
+  const videoTab = document.querySelector('.mode-tab[data-mode="video"]');
+
+  if (videoTab && !videoTab.classList.contains('active')) {
+    videoTab.click();
+  }
+
+  if (promptBox) {
+    promptBox.value = prompt;
+    promptBox.focus();
+  }
+
+  if (modelSelect && model) {
+    for (const opt of modelSelect.options) {
+      if (opt.value === model) {
+        modelSelect.value = model;
+        break;
+      }
+    }
+  }
+
+  if (ratioSelect && ratio) {
+    ratioSelect.value = ratio;
+  }
+
+  if (studioCard) {
+    studioCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    studioCard.classList.remove('studio-highlight-pulse');
+    void studioCard.offsetWidth; // Trigger reflow
+    studioCard.classList.add('studio-highlight-pulse');
+  }
+
+  const toastText = title ? `Loaded "${title}" prompt into Studio!` : 'Prompt loaded into Studio!';
+  showToast(toastText, '✨');
+  logTelemetry('showcase_prompt_used', { promptPreview: prompt.substring(0, 50) });
+}
+
+// 8. Theater Modal Management
+function initTheaterModal() {
+  const modal = document.getElementById('theaterModal');
+  const closeBtn = document.getElementById('closeTheater');
+  const video = document.getElementById('theaterVideo');
+  const btnUse = document.getElementById('btnTheaterUsePrompt');
+  const btnCopy = document.getElementById('btnTheaterCopyPrompt');
+
+  let currentTheaterItem = null;
+
+  window.openTheaterModal = function(item) {
+    if (!modal) return;
+    currentTheaterItem = item;
+    if (video) {
+      video.src = item.videoUrl;
+      video.poster = item.thumbnail;
+      video.play().catch(() => {});
+    }
+    const catEl = document.getElementById('theaterCategory');
+    const modelEl = document.getElementById('theaterModel');
+    const qualEl = document.getElementById('theaterQuality');
+    const titleEl = document.getElementById('theaterTitle');
+    const promptEl = document.getElementById('theaterPrompt');
+
+    if (catEl) catEl.textContent = item.categoryLabel || item.tag;
+    if (modelEl) modelEl.textContent = item.model;
+    if (qualEl) qualEl.textContent = item.quality || '4K 60FPS';
+    if (titleEl) titleEl.textContent = item.title;
+    if (promptEl) promptEl.textContent = item.prompt;
+
+    modal.classList.add('open');
+    logTelemetry('theater_modal_opened', { id: item.id });
+  };
+
+  function closeModal() {
+    if (modal) modal.classList.remove('open');
+    if (video) video.pause();
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  if (btnUse) {
+    btnUse.addEventListener('click', () => {
+      if (currentTheaterItem) {
+        usePromptInStudio(currentTheaterItem.prompt, currentTheaterItem.model, currentTheaterItem.aspectRatio, currentTheaterItem.title);
+        closeModal();
+      }
+    });
+  }
+
+  if (btnCopy) {
+    btnCopy.addEventListener('click', async () => {
+      if (currentTheaterItem) {
+        try {
+          await navigator.clipboard.writeText(currentTheaterItem.prompt);
+          showToast('Copied full prompt to clipboard!', '📋');
+        } catch (err) {
+          showToast('Prompt copied!', '📋');
+        }
+      }
+    });
+  }
+}
+
+// 9. Floating Feedback Toast
+let toastTimeout = null;
+function showToast(message, icon = '✨') {
+  const toast = document.getElementById('promptToast');
+  const iconEl = document.getElementById('toastIcon');
+  const msgEl = document.getElementById('toastMessage');
+  if (!toast) return;
+
+  if (iconEl) iconEl.textContent = icon;
+  if (msgEl) msgEl.textContent = message;
+
+  toast.classList.add('show');
+  if (toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2800);
+}
+
 export { openPaywallModal };
