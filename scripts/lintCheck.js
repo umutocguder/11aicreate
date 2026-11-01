@@ -8,7 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
-const IGNORED = new Set(['node_modules', '.git', 'dist', 'build', '.next', '.gradle']);
+const IGNORED = new Set(['node_modules', '.git', 'dist', 'build', '.next', '.gradle', 'graphify-out']);
 const EXTENSIONS = new Set(['.js', '.ts', '.jsx', '.tsx', '.mjs', '.swift', '.kt', '.html', '.css']);
 
 let totalChecked = 0;

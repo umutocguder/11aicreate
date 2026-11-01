@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheaterModal();
   initModeTabs();
   initStudioActions();
+  initDirectorChips();
+  initHeroViewfinder();
+  initRatioPills();
   initAuthUI();
   initPaywallUI();
   updateCreditDisplay();
@@ -431,6 +434,10 @@ function usePromptInStudio(prompt, model = null, ratio = null, title = '') {
 
   if (ratioSelect && ratio) {
     ratioSelect.value = ratio;
+    document.querySelectorAll('.ratio-pill').forEach(p => {
+      if (p.dataset.ratio === ratio) p.classList.add('active');
+      else p.classList.remove('active');
+    });
   }
 
   if (studioCard) {
@@ -443,6 +450,57 @@ function usePromptInStudio(prompt, model = null, ratio = null, title = '') {
   const toastText = title ? `Loaded "${title}" prompt into Studio!` : 'Prompt loaded into Studio!';
   showToast(toastText, '✨');
   logTelemetry('showcase_prompt_used', { promptPreview: prompt.substring(0, 50) });
+}
+
+// 7b. Tactile Quick Director Lens & Lighting Chips
+function initDirectorChips() {
+  const chips = document.querySelectorAll('.director-chip');
+  const promptBox = document.getElementById('promptInput');
+  if (!promptBox) return;
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const toAppend = chip.dataset.append;
+      if (!toAppend) return;
+
+      if (promptBox.value.trim().length > 0) {
+        promptBox.value = `${promptBox.value.trim()}, ${toAppend}`;
+      } else {
+        promptBox.value = toAppend;
+      }
+      promptBox.focus();
+      showToast(`Appended: ${chip.textContent.trim()}`, '🎥');
+      logTelemetry('director_chip_clicked', { chip: chip.textContent.trim() });
+    });
+  });
+}
+
+// 7c. Hero Viewfinder Camera HUD Prompt Loader
+function initHeroViewfinder() {
+  const btn = document.getElementById('btnHeroUsePrompt');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const heroPrompt = "Cinematic hyper-detailed neo-Tokyo cyberpunk alley at night, torrential neon rain, holographic dragons swimming through skyscrapers, 8k raw footage, 35mm anamorphic";
+    usePromptInStudio(heroPrompt, '11Cinema-Ultra-v2', '16:9', 'Cyberpunk Neo-Tokyo');
+  });
+}
+
+// 7d. Tactile Aspect Ratio Pill Selector
+function initRatioPills() {
+  const pills = document.querySelectorAll('.ratio-pill');
+  const ratioSelect = document.getElementById('ratioSelect');
+  if (!pills.length || !ratioSelect) return;
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const ratio = pill.dataset.ratio;
+      ratioSelect.value = ratio;
+      showToast(`Aspect ratio set to ${ratio}`, '📐');
+    });
+  });
 }
 
 // 8. Theater Modal Management

@@ -31,6 +31,11 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
 
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono (UI/UX Pro Max Typography) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet" />
+
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/style.css" />
 
@@ -59,11 +64,9 @@
 </head>
 <body>
 
-  <!-- Ambient Cyber Lighting -->
-  <div class="cyber-grid"></div>
-  <div class="ambient-orb orb-1"></div>
-  <div class="ambient-orb orb-2"></div>
-  <div class="ambient-orb orb-3"></div>
+  <!-- Film Grain Overlay & Directional Cinema Atmosphere (Impeccable Anti-Slop Layer) -->
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="cinema-ambient" aria-hidden="true"></div>
 
   <!-- Navigation -->
   <header class="navbar">
@@ -89,30 +92,104 @@
 
   <!-- Hero Section -->
   <main>
+    <!-- Hero Section: Asymmetric Cinema Director Deck -->
     <section class="hero">
-      <div class="hero-pill">
-        <span>⚡ 11Hopem Neural Vision Engine v2.4</span>
-      </div>
-      <h1 class="hero-title">
-        Turn Imagination Into <span>Cinematic Video</span> & 8K Photos
-      </h1>
-      <p class="hero-subtitle">
-        The unified generative AI studio. Craft jaw-dropping viral videos, photorealistic imagery, and direct prompts with AI Copilot. Cross-platform on Web, iOS (SwiftUI), and Android (Jetpack Compose).
-      </p>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-slate-badge">
+            <span class="slate-dot"></span>
+            <span class="slate-code">PROD: 11AICREATE // SCENE: 01 // 8K RAW</span>
+          </div>
+          
+          <h1 class="hero-title">
+            Direct High-Concept <br /><span class="hero-title-gradient">Cinema Motion</span> & Stills
+          </h1>
+          
+          <p class="hero-subtitle">
+            The multi-platform generative cinema studio. Craft Hollywood-grade camera movement, volumetric atmospheric lighting, and hyper-detailed photorealism with our unified neural engine.
+          </p>
 
-      <div style="display:flex; gap:16px; margin-bottom: 24px;">
-        <a href="#studio" class="btn-primary" style="padding: 14px 32px; font-size:16px;">Launch Studio (1 Free Trial)</a>
-        <a href="#pricing" class="btn-secondary" style="padding: 14px 28px; font-size:16px;">View Plans & Pricing</a>
+          <div class="hero-actions">
+            <a href="#studio" class="btn-primary hero-btn-main">
+              <span class="btn-icon">⚡</span> Launch Studio (1 Free Trial)
+            </a>
+            <a href="#trending-gallery" class="btn-secondary hero-btn-sub">
+              <span>🎬</span> Explore 16 Viral Styles
+            </a>
+          </div>
+
+          <!-- Cinema Production Spec Chips -->
+          <div class="hero-spec-strip">
+            <div class="spec-chip">
+              <span class="spec-label">LATENCY</span>
+              <span class="spec-val">1.4s Cold GPU</span>
+            </div>
+            <div class="spec-divider"></div>
+            <div class="spec-chip">
+              <span class="spec-label">LENS PIPELINE</span>
+              <span class="spec-val">35mm Anamorphic</span>
+            </div>
+            <div class="spec-divider"></div>
+            <div class="spec-chip">
+              <span class="spec-label">PLATFORMS</span>
+              <span class="spec-val">Web • iOS • Android</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Interactive Cinema Director Viewfinder HUD -->
+        <div class="hero-viewfinder-card">
+          <div class="viewfinder-frame">
+            <div class="viewfinder-corner top-left"></div>
+            <div class="viewfinder-corner top-right"></div>
+            <div class="viewfinder-corner bottom-left"></div>
+            <div class="viewfinder-corner bottom-right"></div>
+            <div class="viewfinder-crosshair"></div>
+
+            <!-- Viewfinder Telemetry Header -->
+            <div class="viewfinder-hud-top">
+              <div class="hud-rec-tag">
+                <span class="rec-dot"></span> REC
+              </div>
+              <div class="hud-timecode">00:04:12:18</div>
+              <div class="hud-fps-tag">24.000 FPS</div>
+            </div>
+
+            <!-- Embedded Live Camera Sample Video -->
+            <div class="viewfinder-media">
+              <video src="/videos/cyberpunk-tokyo.mp4" autoplay loop muted playsinline poster="/videos/thumbnails/cyberpunk-tokyo.jpg"></video>
+              <div class="viewfinder-lens-overlay">
+                <span>35mm T1.5 Anamorphic</span>
+                <span>ISO 800 • 1/48s</span>
+                <span>LUT: Neo-Tokyo Gold</span>
+              </div>
+            </div>
+
+            <!-- Viewfinder Interactive Prompt Strip -->
+            <div class="viewfinder-prompt-bar">
+              <div class="viewfinder-prompt-text">
+                "Cinematic hyper-detailed neo-Tokyo cyberpunk alley at night, torrential neon rain..."
+              </div>
+              <button class="btn-viewfinder-use" id="btnHeroUsePrompt">
+                Load Prompt ⚡
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Endless Dual Looping Video Showcase Strip -->
-    <section id="showcase" style="position:relative; z-index:10; margin-bottom: 40px;">
-      <div style="text-align:center; margin-bottom: 16px;">
-        <span style="font-size:12px; font-weight:800; color:var(--accent-cyan); text-transform:uppercase; letter-spacing:1px;">Trending Worldwide</span>
-        <h2 style="font-size:28px; font-weight:800;">Popular AI Video Showcase</h2>
-        <p style="color:var(--text-muted); font-size:14px; margin-top:4px;">Stream real-time animated AI cinema previews generated with Sora, Luma, Kling & Runway</p>
+    <!-- Endless Dual Looping Video Showcase Strip: 35mm Film Reel -->
+    <section id="showcase" class="showcase-section">
+      <div class="showcase-header">
+        <span class="section-tag-gold">Live Feed</span>
+        <h2 class="section-title">Popular AI Cinema Reel</h2>
+        <p class="section-subtitle">Real-time animated cinema previews generated with Sora, Luma, Kling, Runway & FLUX</p>
       </div>
+
+      <!-- Film Sprocket Edge Top -->
+      <div class="film-sprockets top" aria-hidden="true"></div>
+
       <div class="video-marquee-container" style="margin-bottom: 14px;">
         <div id="marqueeTrack1" class="video-marquee-track video-marquee-track-1">
           <!-- Marquee Row 1 populated dynamically by app.js -->
@@ -123,21 +200,54 @@
           <!-- Marquee Row 2 populated dynamically by app.js -->
         </div>
       </div>
+
+      <!-- Film Sprocket Edge Bottom -->
+      <div class="film-sprockets bottom" aria-hidden="true"></div>
     </section>
 
-    <!-- Interactive AI Studio -->
+    <!-- Interactive AI Studio Console (DaVinci / Master HUD) -->
     <section id="studio" class="studio-section">
       <div class="studio-card">
+        <!-- Studio Console HUD Header -->
+        <div class="studio-hud-header">
+          <div class="studio-hud-title">
+            <span class="hud-indicator-dot"></span>
+            <span>CINEMA MASTER CONSOLE v2.4</span>
+          </div>
+          <div class="studio-hud-specs">
+            <span>ENGINE: TENSOR-GPU // 4K PIPELINE</span>
+          </div>
+        </div>
+
         <div class="mode-tabs">
           <button class="mode-tab active" data-mode="video">
-            <span>🎬</span> AI Video Generator
+            <span class="tab-icon">🎬</span>
+            <span class="tab-label">AI Video Generator</span>
+            <span class="tab-badge">⌘1</span>
           </button>
           <button class="mode-tab" data-mode="photo">
-            <span>📸</span> AI Photo Studio
+            <span class="tab-icon">📸</span>
+            <span class="tab-label">8K Stills Studio</span>
+            <span class="tab-badge">⌘2</span>
           </button>
           <button class="mode-tab" data-mode="chat">
-            <span>💬</span> AI Director Copilot
+            <span class="tab-icon">💬</span>
+            <span class="tab-label">Director Copilot</span>
+            <span class="tab-badge">⌘3</span>
           </button>
+        </div>
+
+        <!-- Tactile Quick Director Lens & Lighting Chips -->
+        <div class="director-chips-container" id="directorChipsContainer">
+          <span class="chips-label">Quick Director Tags:</span>
+          <div class="chips-scroll">
+            <button type="button" class="director-chip" data-append="cinematic 35mm anamorphic, volumetric lighting">🎥 35mm Anamorphic</button>
+            <button type="button" class="director-chip" data-append="slow-push dolly in, shallow depth of field, 24fps">🏎️ Slow Dolly In</button>
+            <button type="button" class="director-chip" data-append="golden hour atmospheric haze, god rays, high-end cinema render">🌅 Golden Hour Haze</button>
+            <button type="button" class="director-chip" data-append="torrential neon rain, cyber reflections on wet asphalt, 8k raw footage">🌧️ Cyber Neon Rain</button>
+            <button type="button" class="director-chip" data-append="drone tracking shot through towering redwood canopy">🦅 Drone Tracking</button>
+            <button type="button" class="director-chip" data-append="ultra-photorealistic, Hasselblad 100c, rembrandt portrait lighting">📸 Hasselblad 100c</button>
+          </div>
         </div>
 
         <textarea 
@@ -148,21 +258,40 @@
 
         <div class="studio-controls">
           <div class="control-selectors">
+            <!-- Model Selection Dropdown -->
             <select id="modelSelect" class="custom-select">
               <option value="11Cinema-Ultra-v2">Model: 11Cinema Ultra v2 (Sora / Luma)</option>
               <option value="11FLUX-Master-1.1">Model: 11FLUX Master (8K Photo)</option>
               <option value="11Kling-Motion-Studio">Model: Kling Motion Cinema</option>
             </select>
 
-            <select id="ratioSelect" class="custom-select">
-              <option value="16:9">Aspect: 16:9 (Cinema)</option>
+            <!-- Aspect Ratio Selector (Native Select kept for scripts/tests) -->
+            <select id="ratioSelect" class="custom-select" style="display:none;">
+              <option value="16:9" selected>Aspect: 16:9 (Cinema)</option>
               <option value="9:16">Aspect: 9:16 (TikTok / Reels)</option>
               <option value="1:1">Aspect: 1:1 (Square)</option>
               <option value="21:9">Aspect: 21:9 (Ultrawide)</option>
             </select>
+
+            <!-- Tactile Aspect Ratio Pill Selector (UI/UX Pro Max) -->
+            <div class="ratio-pill-group" id="ratioPillGroup">
+              <button type="button" class="ratio-pill active" data-ratio="16:9">
+                <span class="ratio-box r-16-9"></span> 16:9
+              </button>
+              <button type="button" class="ratio-pill" data-ratio="9:16">
+                <span class="ratio-box r-9-16"></span> 9:16
+              </button>
+              <button type="button" class="ratio-pill" data-ratio="1:1">
+                <span class="ratio-box r-1-1"></span> 1:1
+              </button>
+              <button type="button" class="ratio-pill" data-ratio="21:9">
+                <span class="ratio-box r-21-9"></span> 21:9
+              </button>
+            </div>
           </div>
 
           <button id="btnGenerate" class="btn-generate">
+            <span class="btn-sparkle">✨</span>
             <span>Generate (1 Free Trial Left)</span>
           </button>
         </div>
@@ -174,34 +303,57 @@
       </div>
     </section>
 
-    <!-- Multi-Platform Ecosystem Overview -->
-    <section id="platforms" style="max-width:1100px; margin:0 auto 80px auto; padding:0 20px; text-align:center; position:relative; z-index:10;">
-      <span style="font-size:12px; font-weight:800; color:var(--accent-purple); text-transform:uppercase; letter-spacing:1px;">Unified Architecture</span>
-      <h2 style="font-size:32px; font-weight:800; margin-bottom:12px;">One Powerful Backend, Three Native Experiences</h2>
-      <p style="color:var(--text-muted); max-width:650px; margin:0 auto 40px auto; font-size:15px;">
-        All platforms share the same high-performance Supabase PostgreSQL database, synchronized credit wallets, and realtime generation queue.
-      </p>
+    <!-- Multi-Platform Architecture Section (Precision Spec Sheet) -->
+    <section id="platforms" class="platforms-section">
+      <div class="platforms-header">
+        <span class="section-tag-gold">Unified Engine</span>
+        <h2 class="section-title">One Cinema Backend, Three Native Experiences</h2>
+        <p class="section-subtitle">
+          All platforms synchronize instantaneously with our high-throughput Supabase PostgreSQL cluster, unified wallets, and hardware-accelerated video pipelines.
+        </p>
+      </div>
 
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; text-align:left;">
-        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:28px;">
-          <div style="font-size:32px; margin-bottom:12px;">🌐</div>
-          <h3 style="font-size:18px; font-weight:700; margin-bottom:6px;">Web Studio</h3>
-          <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">Next.js 15 App Router with high-performance video streaming, responsive cinema canvas, and instant download.</p>
-          <span style="color:var(--accent-cyan); font-size:13px; font-weight:600;">Status: ● Live in Production</span>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <div class="platform-card-top">
+            <div class="platform-icon-box">🌐</div>
+            <span class="platform-badge live">● Live in Prod</span>
+          </div>
+          <h3 class="platform-title">Web Cinema Studio</h3>
+          <p class="platform-desc">Next.js 15 App Router with high-performance video streaming, responsive cinema canvas, and instant download.</p>
+          <div class="platform-spec-list">
+            <div class="spec-row"><span>Framework</span><strong>Next.js 15 + Edge</strong></div>
+            <div class="spec-row"><span>Video Player</span><strong>HTML5 Canvas / H.264</strong></div>
+            <div class="spec-row"><span>State Sync</span><strong>Supabase Realtime</strong></div>
+          </div>
         </div>
 
-        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:28px;">
-          <div style="font-size:32px; margin-bottom:12px;">🍎</div>
-          <h3 style="font-size:18px; font-weight:700; margin-bottom:6px;">iOS Native (SwiftUI)</h3>
-          <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">Pure Swift 6 & SwiftUI architecture with AVPlayer haptics, StoreKit paywall bindings, and offline caching.</p>
-          <span style="color:var(--accent-purple); font-size:13px; font-weight:600;">Status: ● Native Xcode Ready</span>
+        <div class="platform-card">
+          <div class="platform-card-top">
+            <div class="platform-icon-box">🍎</div>
+            <span class="platform-badge native">● Swift 6 Ready</span>
+          </div>
+          <h3 class="platform-title">iOS Native (SwiftUI)</h3>
+          <p class="platform-desc">Pure Swift 6 & SwiftUI architecture with AVPlayer haptics, StoreKit paywall bindings, and offline caching.</p>
+          <div class="platform-spec-list">
+            <div class="spec-row"><span>Language</span><strong>Swift 6 (iOS 17+)</strong></div>
+            <div class="spec-row"><span>Player</span><strong>AVPlayerLayer + Metal</strong></div>
+            <div class="spec-row"><span>Billing</span><strong>StoreKit 2 Native</strong></div>
+          </div>
         </div>
 
-        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; padding:28px;">
-          <div style="font-size:32px; margin-bottom:12px;">🤖</div>
-          <h3 style="font-size:18px; font-weight:700; margin-bottom:6px;">Android Native (Compose)</h3>
-          <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">Modern Kotlin & Jetpack Compose 1.7 UI, ExoPlayer video stream cards, Material3 dynamic theme, and Coroutines.</p>
-          <span style="color:var(--accent-pink); font-size:13px; font-weight:600;">Status: ● Jetpack Compose Ready</span>
+        <div class="platform-card">
+          <div class="platform-card-top">
+            <div class="platform-icon-box">🤖</div>
+            <span class="platform-badge compose">● Compose 1.7</span>
+          </div>
+          <h3 class="platform-title">Android Native (Compose)</h3>
+          <p class="platform-desc">Modern Kotlin & Jetpack Compose 1.7 UI, ExoPlayer video stream cards, Material3 dynamic theme, and Coroutines.</p>
+          <div class="platform-spec-list">
+            <div class="spec-row"><span>Language</span><strong>Kotlin 2.0 (API 24+)</strong></div>
+            <div class="spec-row"><span>Player</span><strong>ExoPlayer 2.9 Stream</strong></div>
+            <div class="spec-row"><span>Theme</span><strong>Material3 Cyber Theme</strong></div>
+          </div>
         </div>
       </div>
     </section>
