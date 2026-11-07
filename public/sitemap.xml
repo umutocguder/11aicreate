@@ -2,19 +2,19 @@
 <!-- Created by 11Hopem -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://11aicreate.vercel.app/</loc>
+    <loc>https://create.11hopem.com/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://11aicreate.vercel.app/#studio</loc>
+    <loc>https://create.11hopem.com/#studio</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://11aicreate.vercel.app/#pricing</loc>
+    <loc>https://create.11hopem.com/#pricing</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

@@ -70,7 +70,7 @@ All architectural updates, technical iterations, and AI handoff states are logge
 3. **Verification & Deployment**:
    - All 8 unit tests passed 100%.
    - Rule 20 static analysis verified with 0 lint errors.
-   - Verified interactivity with Puppeteer on production site `https://11aicreate.vercel.app`.
+   - Verified interactivity with Puppeteer on production site `https://create.11hopem.com`.
    - Deployed updated build to production via Vercel CLI.
 
 ---
